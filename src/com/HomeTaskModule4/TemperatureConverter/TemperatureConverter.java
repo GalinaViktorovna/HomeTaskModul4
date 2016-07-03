@@ -1,20 +1,34 @@
 package com.HomeTaskModule4.TemperatureConverter;
 
 public class TemperatureConverter {
-    final static double A = 1.8;
-    final static double B = 32;
-    private static double inFahrenheit(double degree){
-        double result = (degree*A)+B;
-        return result;
-    }
-    private static double inCelsius  (double degree){
-        double result = (degree - B)/A;
-        return result;
+    public final static double A = 1.8000;
+    public final static double B = 32;
+    private double degreeInCelsius;
+    private double degreeInFahrenheit;
+
+    public double getDegreeInCelsius() {
+        return degreeInCelsius;
     }
 
-    public static void main(String[] args) {
-        System.out.println(TemperatureConverter.inFahrenheit(36));
-        System.out.println(TemperatureConverter.inCelsius(115));
+    public void setDegreeInCelsius(double degreeInCelsius) {
+        this.degreeInCelsius = degreeInCelsius;
+    }
+
+    public double getDegreeInFahrenheit() {
+        return degreeInFahrenheit;
+    }
+
+    public void setDegreeInFahrenheit(double degreeInFahrenheit) {
+        this.degreeInFahrenheit = degreeInFahrenheit;
+    }
+
+    public double inFahrenheit(double degree) {
+        return this.degreeInFahrenheit = (degree * A) + B;
+    }
+
+    public double inCelsius(double degree) {
+
+        return this.degreeInCelsius = (degree - B) / A;
     }
 
 
