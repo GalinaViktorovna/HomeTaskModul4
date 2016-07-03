@@ -8,11 +8,11 @@ public class Util {
 
     public final static BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
 
-    public static GeometricFigure startProgram() throws IOException {
+    public static void startProgram() throws IOException {
         System.out.println("Hello fella!\nRead me attentively!!!\nI know that you want to compute "
                 + "area of Geometric figure but I must know what figure is it.\nI propose you enter name of geometric" +
                 " figure( Circle or Triangle or Rectangle) or enter \"Quit\" for exit: \n");
-        String[] split;
+        double[] split;
 
         String UsersFigure = READER.readLine();
 
@@ -21,37 +21,42 @@ public class Util {
                 Circle circle = new Circle();
                 split = Util.readDateForFigure(circle);
                 try {
-                    circle.setRadius(Double.parseDouble(split[0]));
-                } catch (NumberFormatException e) {
-                    System.out.println("You enter wrong value!Must be number!");
+                    circle.setRadius((split[0]));
+                    System.out.println(circle);
+
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("You enter deficiency value!Try again!");
+                    System.exit(1);
                 }
-                return circle;
+
+
+                break;
+
             case "Rectangle":
                 Rectangle rectangle = new Rectangle();
                 split = Util.readDateForFigure(rectangle);
                 try {
-                    rectangle.setLengthOfFirstSide(Double.parseDouble(split[0]));
-                    rectangle.setLengthOfSecondSide(Double.parseDouble(split[1]));
-                } catch (NumberFormatException e) {
-                    System.out.println("You enter wrong value!Must be number!");
+                    rectangle.setLengthOfFirstSide(split[0]);
+                    rectangle.setLengthOfSecondSide(split[1]);
+                    System.out.println(rectangle);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("You enter only one value!Try again!");
                     System.exit(1);
                 }
-                return rectangle;
+                break;
+
             case "Triangle":
                 Triangle triangle = new Triangle();
                 split = Util.readDateForFigure(triangle);
                 try {
-                    triangle.setHeight(Double.parseDouble(split[0]));
-                    triangle.setCoreOfTriangle(Double.parseDouble(split[1]));
-                } catch (NumberFormatException e) {
-                    System.out.println("You enter wrong value!Must be number!");
+                    triangle.setHeight(split[0]);
+                    triangle.setCoreOfTriangle(split[1]);
+                    System.out.println(triangle);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("You enter only one value!Try again!");
+                    System.out.println("You enter deficiency value!Try again!");
                     System.exit(1);
                 }
-                return triangle;
+                break;
 
             case "Quit":
                 System.exit(1);
@@ -60,15 +65,23 @@ public class Util {
 
         }
 
-
-        return null;
     }
 
-    public static String[] readDateForFigure(GeometricFigure geometricFigure) throws IOException {
+    public static double[] readDateForFigure(GeometricFigure geometricFigure) throws IOException {
         System.out.println(geometricFigure.initParam());
         String input = READER.readLine();
-        return input.split(",");
+        String[] s = input.split(",");
+        double[] mass = new double[s.length];
+        try {
+            for (int i = 0; i < s.length; i++) {
+                mass[i] = Double.parseDouble(s[i]);
 
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("You enter wrong value!Try again!");
+            System.exit(1);
+        }
+        return mass;
     }
 
 
