@@ -13,4 +13,5 @@ public abstract class GeometricFigure {
         return "Great!!!\nArea of your " + getClassName() + " = " + areaOfFigure() +
                 ".\nGood luck, dude!:)";
     }
+
 }
