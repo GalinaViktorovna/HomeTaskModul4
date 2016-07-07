@@ -2,6 +2,8 @@ package com.HomeTaskModule4.GeometricFigures;
 
 public abstract class GeometricFigure {
 
+
+
     public abstract String getClassName();
 
     public abstract String initParam();
